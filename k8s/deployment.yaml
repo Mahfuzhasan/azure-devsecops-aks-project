@@ -1,0 +1,28 @@
+# API version for Deployment resource
+apiVersion: apps/v1
+
+# Type of Kubernetes object
+kind: Deployment
+
+metadata:
+  name: fastapi-deployment   # Name of the deployment
+
+spec:
+  replicas: 1                # Number of pods (instances)
+
+  selector:
+    matchLabels:
+      app: fastapi-app       # Must match pod labels
+
+  template:
+    metadata:
+      labels:
+        app: fastapi-app     # Label for pod identification
+
+    spec:
+      containers:
+      - name: fastapi-container   # Container name
+        image: acrdevsecops12345.azurecr.io/fastapi-app:v1  # Image from ACR
+
+        ports:
+        - containerPort: 8000     # App runs on port 8000

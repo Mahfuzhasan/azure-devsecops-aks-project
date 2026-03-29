@@ -1,0 +1,19 @@
+# API version for Service
+apiVersion: v1
+
+# Type of Kubernetes object
+kind: Service
+
+metadata:
+  name: fastapi-service   # Name of the service
+
+spec:
+  type: LoadBalancer      # Expose app to internet (Azure creates public IP)
+
+  selector:
+    app: fastapi-app      # Must match Deployment labels
+
+  ports:
+    - protocol: TCP
+      port: 80            # Public port
+      targetPort: 8000    # Container port
